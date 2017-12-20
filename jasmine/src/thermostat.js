@@ -3,4 +3,7 @@ var Thermostat = function(){
   this.up = function() {
     this.temperature += 1;
   };
+  this.down = function() {
+    this.temperature -= 1;
+  };
 };
