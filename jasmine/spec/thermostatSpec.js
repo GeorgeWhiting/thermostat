@@ -14,6 +14,10 @@ describe("thermostat", function() {
       thermostat.up(1);
       expect(thermostat.temperature).toEqual(21);
     });
+    it("shouldn't allow the temperature to go below 10", function() {
+      thermostat.temperature = 10;
+      expect(function() {thermostat.down()}).toThrow(new Error("Stop it! I'm freezing!"))
+    })
     it("should be able to turn the temperature down", function() {
       thermostat.down(1);
       expect(thermostat.temperature).toEqual(19);
