@@ -1,7 +1,7 @@
 var Thermostat = function(){
   this.temperature = 20;
 
-  this.up = function(ecomode = new Ecomode) {
+  this.up = function(ecomode = this.ecomode) {
     if (this.temperature >= 32) {
       throw new Error("Stop it! Mans CAN be too hot");
     }
@@ -16,5 +16,9 @@ var Thermostat = function(){
       throw new Error("Stop it! I'm freezing!")
     }
     this.temperature -= 1;
+  };
+
+  this.reset = function() {
+    this.temperature = 20;
   };
 };
