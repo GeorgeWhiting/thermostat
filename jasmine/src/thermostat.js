@@ -1,3 +1,6 @@
 var Thermostat = function(){
-  this._temperature = 20;
+  this.temperature = 20;
+  this.up = function() {
+    this.temperature += 1;
+  };
 };
