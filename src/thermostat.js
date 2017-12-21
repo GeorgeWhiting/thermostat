@@ -1,12 +1,13 @@
 'use strict';
 var Thermostat = function(){
   this.temperature = 20;
+  this.ecomodeIsOn = true;
 
   this.up = function() {
     if (this.temperature >= 32) {
       throw new Error("Stop it! Mans CAN be too hot");
     }
-    else if (this.isOn && this.temperature >= 25) {
+    else if (this.ecomodeIsOn && this.temperature >= 25) {
       throw new Error("Don't waste dat energy, fool");
     };
     this.temperature += 1;
@@ -37,14 +38,14 @@ var Thermostat = function(){
     };
   };
 
-  this.isOn = true;
 
-  this.turnOff = function() {
-    this.isOn = false;
+
+  this.ecomodeTurnOff = function() {
+    this.ecomodeIsOn = false;
   };
 
-  this.turnOn = function() {
-    this.isOn = true;
+  this.ecomodeTurnOn = function() {
+    this.ecomodeIsOn = true;
   };
 
 };

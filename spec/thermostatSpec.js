@@ -12,7 +12,7 @@ describe("thermostat", function() {
   });
   describe("change temperature", function() {
     it("should be able to turn the temperature up", function() {
-      thermostat.up(1);
+      thermostat.up();
       expect(thermostat.getTemp()).toEqual(21);
     });
     it("shouldn't allow the temperature to go below 10", function() {
@@ -39,7 +39,7 @@ describe("thermostat", function() {
     });
     // it("should set the temperature to 25 when ecomode is turned on above that temperature", function() {
     //   thermostat.temperature = 30;
-    //   thermostat.ecomode.turnOn;
+    //   thermostat.ecomode.ecomodeTurnOn;
     //   expect(thermostat.getTemp()).toEqual(25);
     // })
     it("should have a reset button that sets the temperature to 20", function() {
@@ -65,17 +65,17 @@ describe("thermostat", function() {
 
   describe("Turn ecomode on and off", function() {
     it("can be turned off", function() {
-      thermostat.isOn = true;
-      thermostat.turnOff();
-      expect(thermostat.isOn).toEqual(false);
+      thermostat.ecomodeIsOn = true;
+      thermostat.ecomodeTurnOff();
+      expect(thermostat.ecomodeIsOn).toEqual(false);
     });
     it("can be turned on", function() {
-      thermostat.isOn = false;
-      thermostat.turnOn();
-      expect(thermostat.isOn).toEqual(true);
+      thermostat.ecomodeIsOn = false;
+      thermostat.ecomodeTurnOn();
+      expect(thermostat.ecomodeIsOn).toEqual(true);
     });
   });
   it("should default to on", function() {
-    expect(thermostat.isOn).toEqual(true);
+    expect(thermostat.ecomodeIsOn).toEqual(true);
   });
 });
