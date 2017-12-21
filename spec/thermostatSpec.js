@@ -37,11 +37,12 @@ describe("thermostat", function() {
         thermostat.up()
       }).toThrow(new Error("Stop it! Mans CAN be too hot"));
     });
-    // it("should set the temperature to 25 when ecomode is turned on above that temperature", function() {
-    //   thermostat.temperature = 30;
-    //   thermostat.ecomode.ecomodeTurnOn;
-    //   expect(thermostat.getTemp()).toEqual(25);
-    // })
+    it("should set the temperature to ecomode max when ecomode is turned on above that temperature", function() {
+      thermostat.temperature = 30;
+      //console.log(thermostat.getTemp());
+      thermostat.ecomodeTurnOn();
+      expect(thermostat.getTemp()).toEqual(thermostat.ECOMODE_MAX);
+    })
     it("should have a reset button that sets the temperature to the default", function() {
       thermostat.temperature = 13;
       thermostat.reset();

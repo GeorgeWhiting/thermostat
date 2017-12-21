@@ -23,6 +23,9 @@ Thermostat.prototype.ecomodeTurnOff = function() {
 
 Thermostat.prototype.ecomodeTurnOn = function() {
   this.ecomodeIsOn = true;
+  if (this.getTemp() > this.ECOMODE_MAX) {
+    this.temperature = this.ECOMODE_MAX;
+  };
 };
 
 Thermostat.prototype.up = function() {
