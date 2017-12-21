@@ -67,15 +67,15 @@ describe("thermostat", function() {
     it("can be turned off", function() {
       thermostat.ecomodeIsOn = true;
       thermostat.ecomodeTurnOff();
-      expect(thermostat.ecomodeIsOn).toEqual(false);
+      expect(thermostat.isEcomodeOn()).toEqual(false);
     });
     it("can be turned on", function() {
       thermostat.ecomodeIsOn = false;
       thermostat.ecomodeTurnOn();
-      expect(thermostat.ecomodeIsOn).toEqual(true);
+      expect(thermostat.isEcomodeOn()).toEqual(true);
     });
   });
   it("should default to on", function() {
-    expect(thermostat.ecomodeIsOn).toEqual(true);
+    expect(thermostat.isEcomodeOn()).toBe(true);
   });
 });

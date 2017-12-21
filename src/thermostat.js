@@ -38,8 +38,6 @@ var Thermostat = function(){
     };
   };
 
-
-
   this.ecomodeTurnOff = function() {
     this.ecomodeIsOn = false;
   };
@@ -52,4 +50,8 @@ var Thermostat = function(){
 
 Thermostat.prototype.getTemp = function() {
   return this.temperature;
+};
+
+Thermostat.prototype.isEcomodeOn = function() {
+  return this.ecomodeIsOn === true;
 };
