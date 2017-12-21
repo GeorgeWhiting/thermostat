@@ -1,3 +1,4 @@
+'use strict';
 describe("Ecomode", function() {
 
   var ecomode;

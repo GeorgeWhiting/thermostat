@@ -1,3 +1,4 @@
+'use strict';
 var Thermostat = function(){
   this.temperature = 20;
 
@@ -35,4 +36,8 @@ var Thermostat = function(){
         break;
     };
   };
+};
+
+Thermostat.prototype.getTemp = function() {
+  return this.temperature;
 };
