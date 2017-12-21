@@ -7,32 +7,32 @@ describe("thermostat", function() {
     thermostat = new Thermostat;
   });
 
-  it("should initialise with a temperature of 20", function() {
-    expect(thermostat.getTemp()).toEqual(20);
+  it("should initialise with a temperature equal to the default", function() {
+    expect(thermostat.getTemp()).toEqual(thermostat.DEFAULT_TEMPERATURE);
   });
   describe("change temperature", function() {
     it("should be able to turn the temperature up", function() {
       thermostat.up();
-      expect(thermostat.getTemp()).toEqual(21);
+      expect(thermostat.getTemp()).toEqual(thermostat.DEFAULT_TEMPERATURE+1);
     });
-    it("shouldn't allow the temperature to go below 10", function() {
-      thermostat.temperature = 10;
+    it("shouldn't allow the temperature to go below default minimum", function() {
+      thermostat.temperature = thermostat.MINIMUM_TEMPERATURE;
       expect(function() {
         thermostat.down()
       }).toThrow(new Error("Stop it! I'm freezing!"));
     });
     it("should be able to turn the temperature down", function() {
       thermostat.down();
-      expect(thermostat.getTemp()).toEqual(19);
+      expect(thermostat.getTemp()).toEqual(thermostat.DEFAULT_TEMPERATURE-1);
     });
-    it("should not go higher than 25 if ecomode is on", function() {
-      thermostat.temperature = 25;
+    it("should not go higher than the ecomode maximum if ecomode is on", function() {
+      thermostat.temperature = thermostat.ECOMODE_MAX;
       expect(function() {
         thermostat.up()
       }).toThrow(new Error("Don't waste dat energy, fool"));
     });
-    it("should never go higher than 32", function() {
-      thermostat.temperature = 32;
+    it("should never go higher than the maximum", function() {
+      thermostat.temperature = thermostat.NO_ECOMODE_MAX;
       expect(function() {
         thermostat.up()
       }).toThrow(new Error("Stop it! Mans CAN be too hot"));
@@ -42,10 +42,10 @@ describe("thermostat", function() {
     //   thermostat.ecomode.ecomodeTurnOn;
     //   expect(thermostat.getTemp()).toEqual(25);
     // })
-    it("should have a reset button that sets the temperature to 20", function() {
+    it("should have a reset button that sets the temperature to the default", function() {
       thermostat.temperature = 13;
       thermostat.reset();
-      expect(thermostat.getTemp()).toEqual(20);
+      expect(thermostat.getTemp()).toEqual(thermostat.DEFAULT_TEMPERATURE);
     });
   });
   describe("usage enquire", function() {
