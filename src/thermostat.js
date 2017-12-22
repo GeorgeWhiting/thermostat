@@ -67,7 +67,7 @@ Thermostat.prototype.usageEnquire = function() {
 Thermostat.prototype.textColour = function() {
   switch(true) {
     case (this.temperature < this.MEDIUM_USAGE_LIMIT):
-      return "green";
+      return "aqua";
       break;
     case (this.temperature < this.ECOMODE_MAX && this.temperature > this.MEDIUM_USAGE_LIMIT):
       return "black";

@@ -20,6 +20,15 @@
     <h1>The temperature outside is: <span id='outside-temperature'></span></h1>
   </section>
 
+
+  <select id="cities">
+    <option value="">--Select City--</option>
+  <option value="London,uk">London</option>
+  <option value="Helsinki,fi">Helsinki</option>
+  <option value="Tallinn,ee">Tallinn</option>
+  <option value="Bristol,uk">Bristol</option>
+  </select>
+
   <script src="thermostat.js"></script>
   <script src="jquery-3.2.1.js"></script>
 
@@ -27,7 +36,6 @@
 
 <script>
   $(function() {
-
     $(thermostat = new Thermostat);
 
     $("#up").click(function() {
@@ -75,12 +83,13 @@
     updateTemp();
     updateEcomode();
 
-    $.get('http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=9a47d3f95b1a0a958405ae9bb0d1fa9c', function(data) {
-      console.log(data.main.temp);
-      $('#outside-temperature').text(data.main.temp);
+    $('#cities').change(function() {
+      var city = $('#cities').val();
+      $.get("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=9a47d3f95b1a0a958405ae9bb0d1fa9c&units=metric", function(data) {
+        $('#outside-temperature').text(data.main.temp);
+      });
     });
   });
 </script>
-
-
+<!-- http://api.openweathermap.org/data/2.5/weather?q=Novisibirsk,ru&appid=9a47d3f95b1a0a958405ae9bb0d1fa9c&units=metric -->
 </html>
