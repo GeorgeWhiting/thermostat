@@ -1,90 +1,86 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title> THERMOSTAT </title>
-  </head>
 
-  <body>
+<head>
+  <title> THERMOSTAT </title>
+</head>
 
-<h1 id="temperature"></h1>
+<body>
 
-    <button id="up">+</button>
-    <button id="down">-</button>
-    <button id="ecomode-on">ECOMODE ON</button>
-    <button id="ecomode-off">ECOMODE OFF</button>
-    <button id="reset">RESET</button>
-    <br><br>
-    Ecomode is <span id="ecomodeIsOn"></span>
+  <h1 id="temperature"></h1>
 
+  <button id="up">+</button>
+  <button id="down">-</button>
+  <button id="ecomode-on">ECOMODE ON</button>
+  <button id="ecomode-off">ECOMODE OFF</button>
+  <button id="reset">RESET</button>
+  <br><br> Ecomode is <span id="ecomodeIsOn"></span>
 
-    <script src="thermostat.js"></script>
-    <script src="jquery-3.2.1.js"></script>
+  <section>
+    <h1>The temperature outside is: <span id='outside-temperature'></span></h1>
+  </section>
 
-  </body>
+  <script src="thermostat.js"></script>
+  <script src="jquery-3.2.1.js"></script>
 
-  <script>
+</body>
 
-    $(function() {
+<script>
+  $(function() {
 
-      $(thermostat = new Thermostat);
+    $(thermostat = new Thermostat);
 
-
-
-      $("#up").click(function() {
-        thermostat.up();
-        updateTemp();
-        updateColour();
-      });
-
-      $("#down").click(function() {
-        thermostat.down();
-        updateTemp();
-        updateColour();
-      });
-
-      $("#reset").click(function() {
-        thermostat.reset();
-        updateTemp();
-        updateColour();
-      });
-
-      $("#ecomode-on").click(function() {
-        thermostat.ecomodeTurnOn();
-        updateEcomode();
-        updateTemp();
-      });
-
-      $("#ecomode-off").click(function() {
-        thermostat.ecomodeTurnOff();
-        updateEcomode();
-        updateTemp();
-      });
-
-      updateColour = function() {
-        document.getElementById("temperature").style.color = thermostat.textColour();
-      };
-
-      updateTemp = function() {
-        $('#temperature').text(thermostat.temperature);
-      };
-
-      updateEcomode = function() {
-        $('#ecomodeIsOn').text(thermostat.ecomodeIsOn);
-      };
-
+    $("#up").click(function() {
+      thermostat.up();
       updateTemp();
+      updateColour();
+    });
+
+    $("#down").click(function() {
+      thermostat.down();
+      updateTemp();
+      updateColour();
+    });
+
+    $("#reset").click(function() {
+      thermostat.reset();
+      updateTemp();
+      updateColour();
+    });
+
+    $("#ecomode-on").click(function() {
+      thermostat.ecomodeTurnOn();
       updateEcomode();
+      updateTemp();
+    });
 
-    })
+    $("#ecomode-off").click(function() {
+      thermostat.ecomodeTurnOff();
+      updateEcomode();
+      updateTemp();
+    });
 
+    updateColour = function() {
+      document.getElementById("temperature").style.color = thermostat.textColour();
+    };
 
+    updateTemp = function() {
+      $('#temperature').text(thermostat.temperature);
+    };
 
+    updateEcomode = function() {
+      $('#ecomodeIsOn').text(thermostat.ecomodeIsOn);
+    };
 
+    updateTemp();
+    updateEcomode();
 
-
-
-
-  </script>
+    $.get('http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=9a47d3f95b1a0a958405ae9bb0d1fa9c', function(data) {
+      console.log(data.main.temp);
+      $('#outside-temperature').text(data.main.temp);
+    });
+  });
+</script>
 
 
 </html>
