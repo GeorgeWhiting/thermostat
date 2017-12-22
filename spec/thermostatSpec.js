@@ -39,7 +39,6 @@ describe("thermostat", function() {
     });
     it("should set the temperature to ecomode max when ecomode is turned on above that temperature", function() {
       thermostat.temperature = 30;
-      //console.log(thermostat.getTemp());
       thermostat.ecomodeTurnOn();
       expect(thermostat.getTemp()).toEqual(thermostat.ECOMODE_MAX);
     })

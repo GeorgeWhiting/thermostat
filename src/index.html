@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> THERMOSTAT </title>
+  </head>
+
+  <body>
+
+<h1 id="temperature"></h1>
+
+    <button id="up">+</button>
+    <button id="down">-</button>
+    <button id="ecomode-on">ECOMODE ON</button>
+    <button id="ecomode-off">ECOMODE OFF</button>
+    <button id="reset">RESET</button>
+    <br><br>
+    Ecomode is <span id="ecomodeIsOn"></span>
+
+
+    <script src="thermostat.js"></script>
+    <script src="jquery-3.2.1.js"></script>
+
+  </body>
+
+  <script>
+
+    $(function() {
+
+      $(thermostat = new Thermostat);
+
+      $('#temperature').text(thermostat.temperature);
+      $('#ecomodeIsOn').text(thermostat.ecomodeIsOn);
+
+      $("#up").click(function() {
+        thermostat.up();
+        $('#temperature').text(thermostat.temperature);
+      });
+
+      $("#down").click(function() {
+        thermostat.down();
+        $('#temperature').text(thermostat.temperature);
+      });
+
+      $("#reset").click(function() {
+        thermostat.reset();
+        $('#temperature').text(thermostat.temperature);
+      });
+
+      $("#ecomode-on").click(function() {
+        thermostat.ecomodeTurnOn();
+        $('#ecomodeIsOn').text('on')
+        $('#temperature').text(thermostat.temperature);
+      });
+
+      $("#ecomode-off").click(function() {
+        thermostat.ecomodeTurnOff();
+        $('#ecomodeIsOn').text('off')
+        $('#temperature').text(thermostat.temperature);
+      });
+
+
+
+    })
+
+
+
+
+
+
+
+
+  </script>
+
+
+</html>
